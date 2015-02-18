@@ -2,9 +2,16 @@
 // Only used for sprintf
 #include <stdio.h>
 
+#include <Wire.h>
+#include <Adafruit_BMP085.h>
+
 // Data wire is plugged into port 7 on the Arduino
 // Connect a 4.7K resistor between VCC and the data pin (strong pullup)
 #define DHT22_PIN 7
+
+//Definte barometric pressure
+
+Adafruit_BMP085 bmp;
 
 // Setup a DHT22 instance
 DHT22 myDHT22(DHT22_PIN);
@@ -93,4 +100,8 @@ void loop(void)
   {
     digitalWrite(Humid_LEDPin, LOW);
   }
+  
+  Serial.print("Pressure = ");
+  Serial.print(bmp.readPressure());
+  Serial.println(" Pa");
 }
