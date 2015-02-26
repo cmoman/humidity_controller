@@ -10,7 +10,7 @@
 #define DHT22_PIN 7
 
 //Definte barometric pressure
-//SDA and SDL on Digital Pins D2 and D3
+//SDA and SDCL on Digital Pins D2 and D3 respectively 
 //Hence reallocate the LED outputs below
 Adafruit_BMP085 bmp;
 
@@ -56,6 +56,15 @@ void loop(void)
   delay(2000);
   
   Serial.print("Requesting data...");
+  
+    Serial.print("Temperature = ");
+    Serial.print(bmp.readTemperature());
+    Serial.println(" *C");
+    
+
+  
+  
+  
   errorCode = myDHT22.readData();
   switch(errorCode)
   {
@@ -111,7 +120,5 @@ void loop(void)
     digitalWrite(Humid_LEDPin, LOW);
   }
   
-  Serial.print("Pressure = ");
-  Serial.print(bmp.readPressure());
-  Serial.println(" Pa");
+
 }
